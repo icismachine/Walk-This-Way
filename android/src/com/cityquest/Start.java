@@ -9,5 +9,8 @@ public class Start extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        ShakeListener mShaker = new ShakeListener(this);
+        
     }
 }
