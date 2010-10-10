@@ -26,6 +26,7 @@ public class Start extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         locationTest();
+    	httpTest();
     }
     
     public void locationTest() {
@@ -41,7 +42,6 @@ public class Start extends Activity {
     	locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 0, 
     			new LocationUpdatesCallback(LocationManager.GPS_PROVIDER));
     	
-    	httpTest();
     }
     
     public void httpTest() {
@@ -60,7 +60,9 @@ public class Start extends Activity {
     }
     
     public String humanReadableLocation(Location location){
-		StringBuffer stringBuffer = new StringBuffer();
+    	if (location == null)
+    		return "NULL LOCATION";
+    	StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("accuracy (m)= " + location.getAccuracy() + "\n");
 		stringBuffer.append("altitude (m)= " + location.getAltitude() + "\n");
 		stringBuffer.append("latitude = " + location.getLatitude() + "\n");
