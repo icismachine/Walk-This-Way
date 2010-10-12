@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class ShakeListener implements SensorListener 
 {
 	private static final String TAG = "ShakeListener";
-	private static final String shakingMsg = "Shakes";
+	public static final String shakingMsg = "Shakes";
   private static final int FORCE_THRESHOLD = 350;
   private static final int TIME_THRESHOLD = 100;
   private static final int SHAKE_TIMEOUT = 500;
@@ -24,43 +24,40 @@ public class ShakeListener implements SensorListener
   private SensorManager mSensorMgr;
   private float mLastX=-1.0f, mLastY=-1.0f, mLastZ=-1.0f;
   private long mLastTime;
-  private OnShakeListener mShakeListener;
+  //private OnShakeListener mShakeListener;
   private Context mContext;
   private int mShakeCount = 0;
   private long mLastShake;
   private long mLastForce;
-  private int mcount = 0;
+  public int mcount = 0;
 
-  public interface OnShakeListener
-  {
-	 public void onShake();
-  }
-  
   public void onShake()
   {
     	
   	//change the screen to something
 	  
 	  Toast.makeText(mContext, shakingMsg, Toast.LENGTH_LONG).show();
-      Log.d(TAG, "Shake" );
+      Log.d(TAG, "jsilva Shake " + i );
       if ((mcount %=10) == 0)
       {
- //    	mcount = 0; 
+    	  Log.i(TAG, " End Game" );
+     //	mcount = 0; 
       	//game ends
       	//FlagEndGame = true;
       }
   	
   }
-  
+
   public ShakeListener(Context context) 
   { 
     mContext = context;
     resume();
   }
 
-  public void setOnShakeListener(OnShakeListener listener)
+  public void setOnShakeListener()
   {
-    mShakeListener = listener;
+
+  //  mShakeListener = listener;
   }
 
   public void resume() {
@@ -75,20 +72,30 @@ public class ShakeListener implements SensorListener
     }
   }
 
+  public int getmCount()
+  {
+	  return mcount;
+  }
+ 
+  public int getI()
+  {
+	  return i;
+  } 
+  
   public void pause() {
     if (mSensorMgr != null) {
       mSensorMgr.unregisterListener(this, SensorManager.SENSOR_ACCELEROMETER);
       mSensorMgr = null;
+      Log.d(TAG, "jsilva pause " + i );
     }
   }
 
-  public void onAccuracyChanged(int sensor, int accuracy) { }
+  public void onAccuracyChanged(int sensor, int accuracy) {}
 
   private int i = 0;
   public void onSensorChanged(int sensor, float[] values) 
   {
-	  String tempstr = "onSensorChanged" + i++;
-	  Log.d(TAG,tempstr);
+	  i++;
     if (sensor != SensorManager.SENSOR_ACCELEROMETER) return;
     long now = System.currentTimeMillis();
 
@@ -97,15 +104,18 @@ public class ShakeListener implements SensorListener
     }
 
     if ((now - mLastTime) > TIME_THRESHOLD) {
-      long diff = now - mLastTime;
+
+    	long diff = now - mLastTime;
       float speed = Math.abs(values[SensorManager.DATA_X] + values[SensorManager.DATA_Y] + values[SensorManager.DATA_Z] - mLastX - mLastY - mLastZ) / diff * 10000;
       if (speed > FORCE_THRESHOLD) {
+
         if ((++mShakeCount >= SHAKE_COUNT) && (now - mLastShake > SHAKE_DURATION)) {
+        	Log.i(TAG,"jsilva SHAKE_COUNT = " + mShakeCount + " SHAKE_DURATION = " + (now - mLastShake) +" " + i); 
           mLastShake = now;
           mShakeCount = 0;
-          if (mShakeListener != null) { 
-            mShakeListener.onShake(); 
-          }
+
+        	  Log.i(TAG,"jsilva try to do a shake" + i); 
+        	  onShake();
         }
         mLastForce = now;
       }

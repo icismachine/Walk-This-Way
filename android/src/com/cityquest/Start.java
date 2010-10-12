@@ -17,10 +17,11 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Start extends Activity {
 	public static String TAG = Start.class.getCanonicalName();
-	
+	ShakeListener mShaker;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +35,9 @@ public class Start extends Activity {
     	LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);    	
 
     	Log.i(TAG, "Last known location by GPS = " + 
-    			humanReadableLocation((locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER))));
+    			humanReadableLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)));
     	Log.i(TAG, "Last known location by NETWORK = " + 
-    			humanReadableLocation((locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER))));
+    			humanReadableLocation(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)));
     	
     	locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60000, 0, 
     			new LocationUpdatesCallback(LocationManager.NETWORK_PROVIDER));
@@ -44,6 +45,7 @@ public class Start extends Activity {
     			new LocationUpdatesCallback(LocationManager.GPS_PROVIDER));
     	
     	httpTest();
+    	
     }
     
     public void httpTest() {
@@ -59,7 +61,6 @@ public class Start extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}    	
->>>>>>> 353cb839ce25428462549249c429aa82b89642de
     }
     
     public String humanReadableLocation(Location location){
