@@ -22,12 +22,17 @@ import android.widget.Toast;
 public class Start extends Activity {
 	public static String TAG = Start.class.getCanonicalName();
 	ShakeListener mShaker;
+	Ball mBall;
+ 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
  
         ShakeListener mShaker = new ShakeListener(this);
+        mBall = new Ball(this);
+	    
+	    setContentView(mBall);
         locationTest();
     	httpTest();
     }
