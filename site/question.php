@@ -1,5 +1,7 @@
 <?php
 
+##TODO preload all the images so there's no delay when buttons are clicked
+
 $link = mysql_connect('localhost', 'root', 's3cr3t');
 if (!$link) {
   die('Could not connect: ' . mysql_error());
@@ -21,17 +23,55 @@ $result = mysql_query($query);
 $question = mysql_fetch_assoc($result);
 mysql_close($link);
 ?>
-
+<html>
+<head>
+<link rel=StyleSheet href="css/style.css" type="text/css">
+</head>
+<body>
 <div class="question">
-  Q: <?php echo $question["text"] ?>
+  <span class="questionIndicator">Q:</span>
+  <span class="questionBody">
+    <?php echo $question["text"] ?>
+  </span>
 </div>
 
-<a class="answer" href="answer.php?choice=a&questionId=<?php echo $questionId ?>">
+<div class="clear">&nbsp;</div>
+
+<a id="a" class="answer" href="#">
   <?php echo $question["answer_a"] ?></a>
-<a class="asnwer" href="answer.php?choice=b&questionId=<?php echo $questionId ?>">
+<a id="b" class="answer" href="#">
   <?php echo $question["answer_b"] ?></a>
-<a class="asnwer" href="answer.php?choice=c&questionId=<?php echo $questionId ?>">
+<a id="c" class="answer" href="#">
   <?php echo $question["answer_c"] ?></a>
-<a class="answer" href="answer.php?choice=d&questionId=<?php echo $questionId ?>">
+<a id="d" class="answer" href="#">
   <?php echo $question["answer_d"] ?></a>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.js"></script>
+<script>
+  var correctAnswer = "<?php echo($question[answer]); ?>";
+  var questionId = "<?php echo($question['id']); ?>";
+  $(".answer").click(
+    function(){
+      $("#"+correctAnswer).css("background-image", "url(img/correct.png)");
+      if ($(this)[0].id == correctAnswer)
+      {
+        var url = "answer.php?choice=" + correctAnswer + "&questionId=" + questionId
+        setTimeout(function() {
+          document.location = url;
+	}, 3000);
+      }
+      else
+      {
+        console.log("incorrect answer");
+        $(this).css("background-image", "url(img/incorrect.png)");
+        setTimeout(function() {
+          document.location = "question.php";
+	}, 3000);
+	redirect("question.php");
+      }
+    }
+  );
+
+</script>
+</body>
+</html>
