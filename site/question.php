@@ -22,14 +22,16 @@ $question = mysql_fetch_assoc($result);
 mysql_close($link);
 ?>
 
-<h1><?php echo $question["text"] ?></h1>
-<ul>
-<li><a href="answer.php?choice=a&questionId=<?php echo $questionId ?>">
+<div class="question">
+  Q: <?php echo $question["text"] ?>
+</div>
+
+<a class="answer" href="answer.php?choice=a&questionId=<?php echo $questionId ?>">
   <?php echo $question["answer_a"] ?></a>
-<li><a href="answer.php?choice=b&questionId=<?php echo $questionId ?>">
+<a class="asnwer" href="answer.php?choice=b&questionId=<?php echo $questionId ?>">
   <?php echo $question["answer_b"] ?></a>
-<li><a href="answer.php?choice=c&questionId=<?php echo $questionId ?>">
+<a class="asnwer" href="answer.php?choice=c&questionId=<?php echo $questionId ?>">
   <?php echo $question["answer_c"] ?></a>
-<li><a href="answer.php?choice=d&questionId=<?php echo $questionId ?>">
+<a class="answer" href="answer.php?choice=d&questionId=<?php echo $questionId ?>">
   <?php echo $question["answer_d"] ?></a>
-</ul>
+
