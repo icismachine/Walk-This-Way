@@ -2,10 +2,10 @@
 $link = mysql_connect('localhost', 'root', 's3cr3t');
 if (!$link) {
 ?>
-  	failed to connect!
+        failed to connect!
 <?php
-	die('Could not connect: ' . mysql_error());
-  
+        die('Could not connect: ' . mysql_error());
+
 }
 else {
 ?>
@@ -18,9 +18,10 @@ mysql_select_db("frankendeal", $link);
         <p>changed to db.
 <?php
 
-#add new entry location entry
-$query = sprintf("insert into location VALUES ('%s','%s');",
+#add new entry location entry                                                                                                 
+$query = sprintf("insert into location (longitude, latitude) VALUES ('%s','%s');",
                  mysql_real_escape_string($_GET["lon"]), mysql_real_escape_string($_GET["lat"]));
+echo $query;
 $result = mysql_query($query);
 $question = mysql_fetch_assoc($result);
 ?>
@@ -28,9 +29,9 @@ $question = mysql_fetch_assoc($result);
 <?php
 
 
-#select the question
+#select the question                                                                                                          
 $query = sprintf("select * from location where latitude = %s;",
-		 mysql_real_escape_string($_GET["lat"]));
+                 mysql_real_escape_string($_GET["lat"]));
 
 $result = mysql_query($query);
 $question = mysql_fetch_assoc($result);
@@ -38,15 +39,15 @@ $question = mysql_fetch_assoc($result);
         <p>read from db.
 <?php
 
-if ($question["lat"]){
+if ($question["latitude"]){
 ?>
-  SUCCESS! 
+  SUCCESS!
 <?php
 }
 else {
 ?>
-  <p>FAIL to add key 
+  <p>FAIL to add key
 <?php
-	echo $question["lat"];
+        echo $question["lat"];
 }
 ?>
