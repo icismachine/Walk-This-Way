@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Frankendeal Trivia</title>
+  <title>Play FrankenBrain</title>
   <link rel="stylesheet" href="frankenstyle.css" type="text/css" media="screen"/>
 </head>
 
@@ -49,13 +49,13 @@
 		/*echo stripslashes( $prefix ) . $tweet . stripslashes( $suffix );*/
 	?>
     </p>
-    <p class="smalltext">&mdash Frankie's latest tweet</p>
+    <p class="smalltext">&mdash; Frankie's latest tweet</p>
      
      <hr/>
      
     <p><a name="fb_share" type="button_count" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script></p>
           
-    <p><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="alissadesigns">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></p>
+    <p><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="frankenbrain">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></p>
       </div>
   </div>
 
