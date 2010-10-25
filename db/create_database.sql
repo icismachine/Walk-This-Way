@@ -63,9 +63,8 @@ CREATE TABLE score (
   id INT NOT NULL AUTO_INCREMENT,
   amt INT,
   round_id INT,
-  user_id INT, 
-  PRIMARY KEY (`ID`),
-  CONSTRAINT answer_user_fk FOREIGN KEY(user_id) REFERENCES user(id)  
+  twitter_username varchar(64), 
+  PRIMARY KEY (`ID`)
 );
 
 insert into question (text, answer_a, answer_b, answer_c, answer_d, answer, created) values ('What is the name of the San Francisco football team?', '49ers', 'Raiders', 'Chargers', 'Packers', 'a', now());

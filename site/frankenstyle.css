@@ -74,3 +74,42 @@ hr {
 	font-size:14px;
 	color: #666666;
 }
+
+#frankenbrain_div {
+	position: relative;
+	float: right;
+	width:200px;
+	left: 390px;
+	top: 155px;
+}
+#frankenbrain_link {
+	position: relative;
+	left: 390px;
+	top: 155px;
+	display: block;
+	width: 200px;
+	height: 45px;
+	background-color:red;
+}
+
+/** Declaration for the a.singleRollover selector **/
+
+a.score_btn {
+	display: block;
+	width: 200px;
+	height: 45px;
+	background: url(score_btn.png) no-repeat 0 0;
+}
+
+/** Declaration for the additional states of the a.singleRollover selector **/
+
+a:visited.score_btn {
+}
+
+a:hover.score_btn {
+	background-position: 0 -49px;
+}
+
+a:active.score_btn {
+	background-position: 0 -49px;
+}

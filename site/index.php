@@ -7,7 +7,10 @@
 <body>
 <div class="centered">
   <div class="welcome">
+  
     <div class="left_col">
+    <p><a href="http://frankenbrain.tumblr.com/" class="score_btn"></a></p>
+
 	<p>
 	<?php
 		// Your twitter username; replace below; keep username in quotes
